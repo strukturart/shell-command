@@ -1,6 +1,6 @@
 ### shell-command
 
-An application for KaiOS to execute shell commands from the Jvascript layer.
+An application for KaiOS to execute shell commands from the Javascript layer.
 
 ![image1](images/screenshot1.png)
 
