@@ -1,0 +1,77 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	
+	<title>Custom-Launcher</title>
+	<meta http-equiv="Content-Security-Policy" content="default-src wttr.in/* 'self'">
+
+
+
+
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
+	<link rel="stylesheet" href="assets/css/main.css"/>
+	<link rel="stylesheet" href="assets/css/grid.css"/>
+
+
+
+</head>
+<body>
+
+
+<div id="finder" class="width-100 height-100">
+	<div id="user">root@Nokia 81104G:~$</div>
+	<div id="app-list"></div>
+	<div id="finder-error"></div>
+</div>
+	
+
+
+	<!--
+///////////////
+///MAN//////
+//////////////
+-->
+
+<div id="man-page" class="flex justify-content-center align-item-center width-100 height-100">
+		<h1>Manual</h1>
+		<div>
+			<p>
+			create the file cmd.json on your sd-card with the example content:
+			[{"cmd_name":"reboot","cmd":"reboot"}]
+			<strong>cmd_name</strong>  = command title<br>
+			<strong>cmd_name</strong>  = command<br>
+			</p>
+			<div><h2>Enter</h2><div>run command</div></div>
+			<div><h2>key 0 </h2><div>Open man-page</div></div>
+			<div id="credit">
+				<p>**********************************</p>
+				<p>**********************************</p>
+				<p>-------Coding by strukturart------</p>
+				<p>**********************************</p>
+				<p>**********************************</p>
+			</div>
+		</div>
+
+	<div id="close">close</div>
+</div>
+
+<!--
+///////////////
+///DEBUG//////
+//////////////
+-->
+
+<div id="debugger"></div>
+
+
+
+
+</body>
+</html>
+
+	<script defer src="assets/js/jQuery-3.1.0.js"></script>
+	<script defer src="assets/js/applait.finder.min.js"></script>
+	<script defer src="assets/js/script.js"></script>
