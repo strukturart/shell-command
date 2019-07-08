@@ -2,7 +2,7 @@
 
 An application for KaiOS to execute shell commands from the Jvascript layer.
 
-**How does it work.
+**How does it work.**
 
 create a dir +file on your SD-Card: cmd/cmd.json
 with this structur:
@@ -12,7 +12,7 @@ with this structur:
 ]
 ```
 
-**Examples
+**Examples**
 
 reboot
 
