@@ -1,6 +1,7 @@
 ### shell-command
 
 An application for KaiOS to execute shell commands from the Javascript layer.
+***This app only works until KaiOS 2.4*** 
 
 ![image1](images/screenshot1.png)
 
@@ -9,32 +10,8 @@ An application for KaiOS to execute shell commands from the Javascript layer.
 **Install.**
 
 
-download the dir shell-comand make nested zip files from the dirs **shell-command** and **application**
-for informations how to install please check: https://sites.google.com/view/bananahackers/install-omnisd/OmniSD
-
-shell-command
-    ├── application
-    │   ├── app.js
-    │   ├── assets
-    │   │   ├── css
-    │   │   │   ├── grid.css
-    │   │   │   ├── grid.min.css
-    │   │   │   ├── main.css
-    │   │   │   └── main.min.css
-    │   │   └── js
-    │   │       ├── applait.finder.min.js
-    │   │       ├── jQuery-3.1.0.js
-    │   │       ├── script.js
-    │   │       └── script.min.js
-    │   ├── icons
-    │   │   ├── icon-112-112.png
-    │   │   ├── icon-112-112.svg
-    │   │   ├── icon-56-56.png
-    │   │   └── icon-56-56.svg
-    │   ├── index.html
-    │   └── manifest.webapp
-    └── metadata.json
-
+download /build/shell-command.zip and install the app with omisd  
+for informations how to install please check: https://sites.google.com/view/bananahackers/install-omnisd
 
 create a dir +file on your SD-Card: cmd/cmd.json
 with this structur:

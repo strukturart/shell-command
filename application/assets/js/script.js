@@ -7,6 +7,7 @@ $(document).ready(function()
 	var i = 0;
 	var z = -1;
 	var finderNav_tabindex = -1;
+	var debug = false;
 
 
 	/////////////////////////
@@ -19,8 +20,8 @@ $(document).ready(function()
 
 		finder.on("empty", function (needle) 
 		{
-		    alert("no sdcard found");
-		    return;
+			alert("no sdcard found");
+			return;
 		});
 
 		finder.search("cmd.json");
@@ -63,19 +64,15 @@ $(document).ready(function()
 									var data = JSON.parse(search_result);
 									$.each(data, function(i, item) {
 									finderNav_tabindex++;
-					$("div#app-list").append('<div class="items" tabindex="'+finderNav_tabindex+'"  data-cmd="'+item.cmd+'">'+item.cmd_name+'</div>');
+									$("div#app-list").append('<div class="items" tabindex="'+finderNav_tabindex+'"  data-cmd="'+item.cmd+'">'+item.cmd_name+'</div>');
 									
-								
-	
-									
-
 									});
 
-$('div#finder').find('div.items[tabindex=0]').focus();
+					$('div#finder').find('div.items[tabindex=0]').focus();
 
 					};
 					reader.readAsText(file)
-				});
+					});
 
 
 	}	
@@ -122,13 +119,38 @@ finder()
 
 
 
+/////////////////
+//VIBRATION/////
+///////////////
 
+
+var vibrateInterval;
+
+// Starts vibration at passed in level
+function startVibrate(duration) {
+    navigator.vibrate(duration);
+}
+
+// Stops vibration
+function stopVibrate() {
+    // Clear interval and stop persistent vibrating
+    if(vibrateInterval) clearInterval(vibrateInterval);
+    navigator.vibrate(0);
+}
+
+// Start persistent vibration at given duration and interval
+// Assumes a number value is given
+function startPersistentVibrate(duration, interval) {
+    vibrateInterval = setInterval(function() {
+        startVibrate(duration);
+    }, interval);
+}
 
 
 
 
 //////////////////
-//LAUNCH APP
+//Execute command
 //////////////////
 
 function exec_cmd()
@@ -138,25 +160,41 @@ function exec_cmd()
 
 	var selected_button = $(":focus")[0];
 	var cmd = selected_button.getAttribute('data-cmd');
-	cmd = "echo `date +%d-%m-%y`&& "+cmd+" >> /storage/sdcard/cmd/output.txt 2>&1";
+	cmd = "echo `date +%d-%m-%y`&&"+cmd+" > /storage/sdcard/cmd/cmd_log.txt 2>&1";
 
-	alert(cmd)
-
-
-	 let extension = navigator.kaiosExtension || navigator.engmodeExtension;
-          if(extension)
-          {
-
-          	//let executor = extension.startUniversalCommand(output, true);
-             let executor = extension.startUniversalCommand(cmd, true); 
-             executor.onsuccess = function(e){alert('success')};
-             executor.onerror = function(e){alert('command failed')};
-          }
-          else alert('no extension object available');
+	$("div#output").text("command is executed "+cmd)
 
 
 
-}
+	
+
+		var extension = navigator.kaiosExtension || navigator.engmodeExtension;
+		if(extension)
+		{
+			var executor = extension.startUniversalCommand(cmd, true); 
+			executor.onsuccess = function(e)
+			{
+				setTimeout(function () 
+				{
+				$("div#output").text("success")
+				startVibrate([100,100,200,100,300]);
+
+				}, 4000);
+			};
+
+			executor.onerror = function(e)
+			{
+				$("div#output").text("error")
+			};
+		}
+		else 
+		{
+			$("div#output").text('no extension object available');
+		}
+
+
+
+		}
 
 
 
@@ -225,7 +263,8 @@ function close_man()
 	////BUG OUTPUT////////////
 	/////////////////////////
 
-
+if(debug == true)
+{
 	$(window).on("error", function(evt) {
 
 	console.log("jQuery error event:", evt);
@@ -237,7 +276,7 @@ function close_man()
 	    alert("Error:\n\t" + e.type + "\nElement:\n\t" + (e.srcElement || e.target));
 	}
 	});
-
+}
 
 });
 
